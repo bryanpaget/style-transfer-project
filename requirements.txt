@@ -1,0 +1,121 @@
+arrow==0.17.0
+attrs==20.3.0
+Babel==2.8.0
+beautifulsoup4==4.9.3
+  - soupsieve [required: >1.2, installed: 2.2.1]
+blinker==1.4
+Brlapi==0.8.2
+cached-property==1.5.2
+certifi==2020.6.20
+chardet==4.0.0
+chrome-gnome-shell==0.0.0
+click==7.1.2
+colorama==0.4.4
+colour==0.1.5
+command-not-found==0.3
+cryptography==3.3.2
+cupshelpers==1.0
+dbus-python==1.2.16
+decorator==4.4.2
+defer==1.0.6
+distro==1.5.0
+dnspython==1.16.0
+docker==4.4.4
+docker-compose==1.27.4
+dockerpty==0.4.1
+docopt==0.6.2
+easygui==0.98.1
+ecdsa==0.16.1
+evdev==1.4.0
+gpg==1.14.0-unknown
+gphoto2==1.9.0
+graphviz==0.14.2
+hidpidaemon==18.4.6
+html5lib==1.1
+idna==2.10
+imageio==2.13.5
+  - numpy [required: Any, installed: 1.21.5]
+  - pillow [required: >=8.3.2, installed: 8.4.0]
+importlib-metadata==4.0.1
+jsonschema==3.2.0
+kernelstub==3.1.4
+language-selector==0.1
+launchpadlib==1.10.13
+  - httplib2 [required: Any, installed: 0.18.1]
+  - keyring [required: Any, installed: 23.0.1]
+    - jeepney [required: >=0.4.2, installed: 0.7.1]
+    - SecretStorage [required: >=3.2, installed: 3.3.1]
+  - lazr.restfulclient [required: >=0.9.19, installed: 0.14.2]
+    - httplib2 [required: >=0.7.7, installed: 0.18.1]
+  - lazr.uri [required: Any, installed: 1.0.5]
+  - setuptools [required: Any, installed: 52.0.0]
+  - six [required: Any, installed: 1.16.0]
+  - testresources [required: Any, installed: ?]
+  - wadllib [required: Any, installed: 1.3.5]
+louis==3.18.0
+lxml==4.6.3
+macaroonbakery==1.3.1
+Markdown==3.3.4
+more-itertools==4.2.0
+netifaces==0.10.9
+oauthlib==3.1.0
+olefile==0.46
+pbr==5.6.0
+pip==20.3.4
+pipdeptree==2.0.0
+pop-transition==1.1.2
+protobuf==3.12.4
+psutil==5.8.0
+pycryptodomex==3.9.7
+pycups==2.0.1
+pydbus==0.6.0
+Pygments==2.7.1
+PyGObject==3.40.1
+  - pycairo [required: >=1.16.0, installed: 1.16.2]
+PyJWT==1.7.1
+pymacaroons==0.13.0
+pymediainfo==5.0.3
+PyNaCl==1.4.0
+pyRFC3339==1.1
+pyrsistent==0.15.5
+python-apt==2.2.1pop0-1628521831-21.10-5dbe6cf
+python-dateutil==2.8.1
+python-debian==0.1.39ubuntu1
+python-dotenv==0.15.0
+python-magic==0.4.20
+python-xlib==0.29
+pytz==2021.1
+pyxattr==0.7.2
+pyxdg==0.27
+PyYAML==5.3.1
+pyzmq==20.0.0
+rapid-photo-downloader==0.9.26
+  - PyQt5 [required: Any, installed: 5.15.4]
+    - PyQt5-sip [required: >=12.8,<13, installed: 12.9.0]
+rawkit==0.6.0
+repolib==1.5.2
+repoman==1.4.0
+requests==2.25.1
+scipy==1.7.3
+  - numpy [required: >=1.16.5,<1.23.0, installed: 1.21.5]
+sessioninstaller==0.0.0
+setproctitle==1.2.1
+simplejson==3.17.2
+sortedcontainers==2.1.0
+system76driver==20.4.45
+systemd-python==234
+tenacity==6.3.1
+texttable==1.6.3
+tornado==6.1
+ubuntu-advantage-tools==27.4
+ubuntu-drivers-common==0.0.0
+ufw==0.36.1
+urllib3==1.26.5
+visidata==2.2.1
+webencodings==0.5.1
+websocket-client==0.57.0
+wheel==0.34.2
+xdg==5
+xkit==0.0.0
+youtube-dl==2021.6.6
+zipp==1.0.0

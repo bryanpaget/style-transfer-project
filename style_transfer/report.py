@@ -4,6 +4,9 @@ import platform
 import datetime
 
 from lshw.client import ListHardware
+from matplotlib import pyplot as plt
+
+from style_transfer.utils import imshow
 
 """
 TODO: Final Report
@@ -42,3 +45,15 @@ class Certificate:
     def list_hardware(self):
         list_hardware = ListHardware()
         return list_hardware.read_data(list_hardware.get_nic_data())
+
+
+# below: useful for getting the images for the report:
+
+# content_image = None
+# style_image = None
+#
+# plt.subplot(1, 2, 1)
+# imshow(content_image, 'Content Image')
+#
+# plt.subplot(1, 2, 2)
+# imshow(style_image, 'Style Image')
