@@ -4,13 +4,11 @@ import glob
 import os
 import time
 
-import IPython.display as display
-
 import tensorflow as tf
 import tensorflow_hub as hub
 
 from style_transfer.style_content_model import StyleContentModel
-from style_transfer.utils import load_img, imshow, tensor_to_image, vgg_layers, clip_0_1, high_pass_x_y
+from style_transfer.utils import load_img, tensor_to_image, vgg_layers, clip_0_1, high_pass_x_y
 
 
 # Parameters
@@ -24,6 +22,14 @@ total_variation_weight = 30
 epochs = 10
 steps_per_epoch = 100
 
+# Optimizer
+
+learning_rate = 0.02
+beta_1 = 0.99
+epsilon = 1e-1
+
+opt = tf.optimizers.Adam(learning_rate=learning_rate, beta_1=beta_1, epsilon=epsilon)
+
 # Model
 
 hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
@@ -34,7 +40,7 @@ content_image_paths = glob.glob("./images/content/*")
 style_image_paths = glob.glob("./images/style/*")
 
 
-def style(content_image_path, style_image_path):
+def style(content_image_path, style_image_path, optimizer):
 
     content_image, style_image = load_img(content_image_path), load_img(style_image_path)
 
@@ -61,14 +67,12 @@ def style(content_image_path, style_image_path):
     style_extractor = vgg_layers(style_layers)
     style_outputs = style_extractor(style_image * 255)
 
-    opt = tf.optimizers.Adam(learning_rate=0.02, beta_1=0.99, epsilon=1e-1)
-
     extractor = StyleContentModel(style_layers,
                                   content_layers,
                                   style_weight,
                                   content_weight,
                                   total_variation_weight,
-                                  opt)
+                                  optimizer)
 
     results = extractor(tf.constant(content_image))
 
@@ -86,8 +90,6 @@ def style(content_image_path, style_image_path):
             step += 1
             extractor.train_step(image)
             print(".", end='', flush=True)
-        display.clear_output(wait=True)
-        display.display(tensor_to_image(image))
     print("Train step: {}".format(step))
 
     end = time.time()
@@ -114,8 +116,6 @@ def style(content_image_path, style_image_path):
             step += 1
             extractor.train_step(image)
             print(".", end='', flush=True)
-        display.clear_output(wait=True)
-        display.display(tensor_to_image(image))
         print("Train step: {}".format(step))
 
     end = time.time()
@@ -141,7 +141,7 @@ if __name__ == '__main__':
         os.mkdir('./Results/')
 
     for c_image_path, s_image_path in zip(content_image_paths, style_image_paths):
-        style(c_image_path, s_image_path)
+        style(c_image_path, s_image_path, opt)
     """
     Here we will most likely want to print out an image that shows the original content image plus the style image plus the 
     resulting image. This can be included in the NFT as a treat.
