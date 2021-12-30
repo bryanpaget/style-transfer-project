@@ -35,9 +35,10 @@ hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylizati
 
 # Files
 
+file_types = ["jpg", "jpeg", "gif", "png", "tiff"]
+
 content_image_paths: List[str] = glob.glob("./images/content/*")
 style_image_paths: List[str] = glob.glob("./images/style/*")
-
 
 def get_content_and_style_layers_vgg19():
 
@@ -210,21 +211,35 @@ if __name__ == '__main__':
     Here we'll want to iterate over all style files and content files.
     """
 
-    print(len(content_image_paths))
-    print(len(style_image_paths))
+    print(f'You have {len(content_image_paths)} content images.')
+    print(f'You have {len(style_image_paths)} style images.')
 
     if not os.path.isdir('./results/'):
         os.mkdir('./results/')
 
-    for c_image_path in content_image_paths:
-        for s_image_path in style_image_paths:
-            # TODO: for each call, the resulting image should also have a corresponding json metadata file.
-            optimizer = tf.optimizers.Adam(learning_rate=learning_rate, beta_1=beta_1, epsilon=epsilon)
-            do_style_transfer(n_epochs=n_epochs,
-                              steps_per_epoch=steps_per_epoch,
-                              content_image_path=c_image_path,
-                              style_image_path=s_image_path,
-                              optimizer=optimizer)
+    for i, c_image_path in enumerate(content_image_paths):
+        for j, s_image_path in enumerate(style_image_paths):
+
+            file_name = f'{c_image_path}-{s_image_path}.png'
+
+            if not os.path.isfile(f'./results/{file_name}'):
+
+                s_image_filetype = s_image_path.split(".")[-1]
+                c_image_filetype = c_image_path.split(".")[-1]
+
+                if c_image_filetype in file_types and s_image_filetype in file_types:
+                    print(f'Now working on content image {i}, style image {j}, filename: {file_name}...')
+                    # TODO: for each call, the resulting image should also have a corresponding json metadata file.
+                    optimizer = tf.optimizers.Adam(learning_rate=learning_rate, beta_1=beta_1, epsilon=epsilon)
+                    do_style_transfer(n_epochs=n_epochs,
+                                      steps_per_epoch=steps_per_epoch,
+                                      content_image_path=c_image_path,
+                                      style_image_path=s_image_path,
+                                      optimizer=optimizer)
+                else:
+                    print("Problem with file types:")
+                    print(c_image_path)
+                    print(s_image_path)
 
     """
     Here we will most likely want to print out an image that shows the original content image plus the style image plus the 
