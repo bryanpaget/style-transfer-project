@@ -220,7 +220,7 @@ if __name__ == '__main__':
     for i, c_image_path in enumerate(content_image_paths):
         for j, s_image_path in enumerate(style_image_paths):
 
-            file_name = f"{c_image_path.split('/')[-1]}-{s_image_path.split(['/'])[-1]}.png"
+            file_name = f"{c_image_path.split('/')[-1]}-{s_image_path.split('/')[-1]}.png"
 
             if not os.path.isfile(f'./results/{file_name}'):
 
