@@ -17,10 +17,10 @@ os.environ['TFHUB_MODEL_LOAD_FORMAT'] = 'COMPRESSED'
 
 # Parameters
 
-style_weight = 1e-2
-content_weight = 1e4
+style_weight = 1
+content_weight = 1000
 
-n_epochs = 1
+n_epochs = 10
 steps_per_epoch = 10
 
 # Optimizer
@@ -220,7 +220,7 @@ if __name__ == '__main__':
     for i, c_image_path in enumerate(content_image_paths):
         for j, s_image_path in enumerate(style_image_paths):
 
-            file_name = f'{c_image_path}-{s_image_path}.png'
+            file_name = f"{c_image_path.split('/')[-1]}-{s_image_path.split(['/'])[-1]}.png"
 
             if not os.path.isfile(f'./results/{file_name}'):
 
